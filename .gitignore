@@ -25,3 +25,4 @@ blog/
 *.sql
 *.sqlite
 .DS_Store
+.DS_Store
