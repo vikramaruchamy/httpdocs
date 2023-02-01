@@ -1,0 +1,872 @@
+<!doctype html>
+<html dir="ltr" lang="en-US">
+
+<head>
+    <title>Base64</title>
+    <link type="image/x-icon" rel="shortcut icon" href="assets/images/logoicon.png" />
+    <!-- Required meta tags -->
+    <meta charset="UTF-8" />
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700" />
+    <link type="text/css" rel="stylesheet" href="assets/css/all.min.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/jquery.fancybox.min.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link type="text/css" rel="stylesheet" href="assets/font/stylesheet.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/styles.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/responsive.css" />
+
+</head>
+
+<body>
+
+
+    <style>
+        li.nav-item.active a {
+            color: black;
+        }
+    </style>
+    <!--Header-->
+    <!-- Home banner -->
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><img src="assets/images/logo.png" alt="logo"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                        class="navbar-toggler-icon">
+                        <div class="plate plate4" onclick="this.classList.toggle('active')">
+                            <svg class="burger" version="1.1" height="100" width="100" viewBox="0 0 100 100">
+                                <path class="line line1" d="M 50,35 H 30" />
+                                <path class="line line2" d="M 50,35 H 70" />
+                                <path class="line line3" d="M 50,50 H 30" />
+                                <path class="line line4" d="M 50,50 H 70" />
+                                <path class="line line5" d="M 50,65 H 30" />
+                                <path class="line line6" d="M 50,65 H 70" />
+                            </svg>
+                            <svg class="x" version="1.1" height="100" width="100" viewBox="0 0 100 100">
+                                <path class="line" d="M 34,32 L 66,68" />
+                                <path class="line" d="M 66,32 L 34,68" />
+                            </svg>
+                        </div>
+                    </span></button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ">
+                        <li class="nav-item ">
+                            <a class="nav-link active" href="index.html">Encode</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="Decode.html">Decode</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link " href="#">About us</a>
+                        </li>
+                    </ul>
+
+                    <div class="btns">
+                        <a href="#" class="borderred">Login</a>
+                        <a href="#" class="btnblack">SignUp</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Modal -->
+    </header>
+    <section class="herosection">
+        <div class="container">
+            <div class="row">
+                <div class="herodetail">
+                    <div class="encode">
+                        <span class="data">
+                            <img src="assets/images/fire.svg" alt="">
+                            <p> A Website to Encode/Decode data</p>
+                        </span>
+                        <h2 class="encodeheading">Encode to <span> {Base64} </span> format</h2>
+                        <p>Do you have to deal with Base64 format? Then this site is perfect for you! <br>
+                            Use our super handy online tool to encode or decode your data.</p>
+                    </div>
+                    <div class="character">
+                        <div class="setdetail">
+                            <div class="set">
+                                <h4>Character set</h4>
+                                <select name="charset" id="LF (unix)">
+                                    <option value="AUTO-DETECT">AUTO-DETECT</option>
+                                    <optgroup label="Populars">
+                                        <option value="UTF-8" selected>UTF-8</option>
+                                        <option value="ASCII">ASCII</option>
+                                        <option value="ISO-8859-1">ISO-8859-1</option>
+                                        <option value="ISO-8859-2">ISO-8859-2</option>
+                                        <option value="ISO-8859-6">ISO-8859-6</option>
+                                        <option value="ISO-8859-15">ISO-8859-15</option>
+                                        <option value="Windows-1252">Windows-1252</option>
+                                    </optgroup>
+                                    <optgroup label="Others">
+                                        <option value="ArmSCII-8">ArmSCII-8</option>
+                                        <option value="BIG-5">BIG-5</option>
+                                        <option value="CP850">CP850</option>
+                                        <option value="CP866">CP866</option>
+                                        <option value="CP932">CP932</option>
+                                        <option value="CP936">CP936</option>
+                                        <option value="CP950">CP950</option>
+                                        <option value="CP50220">CP50220</option>
+                                        <option value="CP50221">CP50221</option>
+                                        <option value="CP50222">CP50222</option>
+                                        <option value="CP51932">CP51932</option>
+                                        <option value="EUC-CN">EUC-CN</option>
+                                        <option value="EUC-JP">EUC-JP</option>
+                                        <option value="EUC-KR">EUC-KR</option>
+                                        <option value="EUC-TW">EUC-TW</option>
+                                        <option value="GB18030">GB18030</option>
+                                        <option value="HZ">HZ</option>
+                                        <option value="ISO-2022-JP">ISO-2022-JP</option>
+                                        <option value="ISO-2022-KR">ISO-2022-KR</option>
+                                        <option value="ISO-8859-3">ISO-8859-3</option>
+                                        <option value="ISO-8859-4">ISO-8859-4</option>
+                                        <option value="ISO-8859-5">ISO-8859-5</option>
+                                        <option value="ISO-8859-7">ISO-8859-7</option>
+                                        <option value="ISO-8859-8">ISO-8859-8</option>
+                                        <option value="ISO-8859-9">ISO-8859-9</option>
+                                        <option value="ISO-8859-10">ISO-8859-10</option>
+                                        <option value="ISO-8859-13">ISO-8859-13</option>
+                                        <option value="ISO-8859-14">ISO-8859-14</option>
+                                        <option value="ISO-8859-16">ISO-8859-16</option>
+                                        <option value="JIS">JIS</option>
+                                        <option value="KOI8-R">KOI8-R</option>
+                                        <option value="KOI8-U">KOI8-U</option>
+                                        <option value="SJIS">SJIS</option>
+                                        <option value="UCS-2">UCS-2</option>
+                                        <option value="UCS-2BE">UCS-2BE</option>
+                                        <option value="UCS-2LE">UCS-2LE</option>
+                                        <option value="UCS-4">UCS-4</option>
+                                        <option value="UCS-4BE">UCS-4BE</option>
+                                        <option value="UCS-4LE">UCS-4LE</option>
+                                        <option value="UHC">UHC</option>
+                                        <option value="UTF-7">UTF-7</option>
+                                        <option value="UTF-16">UTF-16</option>
+                                        <option value="UTF-16BE">UTF-16BE</option>
+                                        <option value="UTF-16LE">UTF-16LE</option>
+                                        <option value="UTF-32">UTF-32</option>
+                                        <option value="UTF-32BE">UTF-32BE</option>
+                                        <option value="UTF-32LE">UTF-32LE</option>
+                                        <option value="UTF7-IMAP">UTF7-IMAP</option>
+                                        <option value="Windows-1251">Windows-1251</option>
+                                        <option value="Windows-1254">Windows-1254</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="set">
+                                <h4>Newline Seprator</h4>
+                                <select name="LF (unix)" id="LF (unix)">
+                                    <option value="UTF - 8">LF (unix) </option>
+                                    <option value="UTF - 8">LF (unix)</option>
+                                    <option value="UTF - 8">LF (unix)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="setdetailbtn">
+                            <div class="lines">
+                                <h4>URL-Safe</h4>
+                                <span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_33_264)">
+                                            <path
+                                                d="M7.99992 14.6667C4.31792 14.6667 1.33325 11.682 1.33325 8C1.33325 4.318 4.31792 1.33334 7.99992 1.33334C11.6819 1.33334 14.6666 4.318 14.6666 8C14.6666 11.682 11.6819 14.6667 7.99992 14.6667ZM7.99992 13.3333C9.41441 13.3333 10.771 12.7714 11.7712 11.7712C12.7713 10.771 13.3333 9.41449 13.3333 8C13.3333 6.58551 12.7713 5.22896 11.7712 4.22877C10.771 3.22857 9.41441 2.66667 7.99992 2.66667C6.58543 2.66667 5.22888 3.22857 4.22868 4.22877C3.22849 5.22896 2.66659 6.58551 2.66659 8C2.66659 9.41449 3.22849 10.771 4.22868 11.7712C5.22888 12.7714 6.58543 13.3333 7.99992 13.3333ZM7.33325 4.66667H8.66659V6H7.33325V4.66667ZM7.33325 7.33334H8.66659V11.3333H7.33325V7.33334Z"
+                                                fill="#868E96" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_33_264">
+                                                <rect width="16" height="16" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+
+                                </span>
+                                <input type="checkbox" hidden="hidden" id="username">
+                                <label class="switch" for="username"></label>
+                            </div>
+                            <div class="lines">
+                                <h4>Split Lines</h4>
+                                <span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_33_264)">
+                                            <path
+                                                d="M7.99992 14.6667C4.31792 14.6667 1.33325 11.682 1.33325 8C1.33325 4.318 4.31792 1.33334 7.99992 1.33334C11.6819 1.33334 14.6666 4.318 14.6666 8C14.6666 11.682 11.6819 14.6667 7.99992 14.6667ZM7.99992 13.3333C9.41441 13.3333 10.771 12.7714 11.7712 11.7712C12.7713 10.771 13.3333 9.41449 13.3333 8C13.3333 6.58551 12.7713 5.22896 11.7712 4.22877C10.771 3.22857 9.41441 2.66667 7.99992 2.66667C6.58543 2.66667 5.22888 3.22857 4.22868 4.22877C3.22849 5.22896 2.66659 6.58551 2.66659 8C2.66659 9.41449 3.22849 10.771 4.22868 11.7712C5.22888 12.7714 6.58543 13.3333 7.99992 13.3333ZM7.33325 4.66667H8.66659V6H7.33325V4.66667ZM7.33325 7.33334H8.66659V11.3333H7.33325V7.33334Z"
+                                                fill="#868E96" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_33_264">
+                                                <rect width="16" height="16" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+
+                                </span>
+                                <input type="checkbox" hidden="hidden" id="username1">
+                                <label class="switch" for="username1"></label>
+                            </div>
+
+                            <div class="livedemo">
+                                <h4>Live mode</h4>
+                                <span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_33_264)">
+                                            <path
+                                                d="M7.99992 14.6667C4.31792 14.6667 1.33325 11.682 1.33325 8C1.33325 4.318 4.31792 1.33334 7.99992 1.33334C11.6819 1.33334 14.6666 4.318 14.6666 8C14.6666 11.682 11.6819 14.6667 7.99992 14.6667ZM7.99992 13.3333C9.41441 13.3333 10.771 12.7714 11.7712 11.7712C12.7713 10.771 13.3333 9.41449 13.3333 8C13.3333 6.58551 12.7713 5.22896 11.7712 4.22877C10.771 3.22857 9.41441 2.66667 7.99992 2.66667C6.58543 2.66667 5.22888 3.22857 4.22868 4.22877C3.22849 5.22896 2.66659 6.58551 2.66659 8C2.66659 9.41449 3.22849 10.771 4.22868 11.7712C5.22888 12.7714 6.58543 13.3333 7.99992 13.3333ZM7.33325 4.66667H8.66659V6H7.33325V4.66667ZM7.33325 7.33334H8.66659V11.3333H7.33325V7.33334Z"
+                                                fill="#868E96" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_33_264">
+                                                <rect width="16" height="16" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+
+                                </span>
+                                <input type="checkbox" hidden="hidden" id="username3">
+                                <label class="switch" for="username3"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="uploaddetail">
+                    <div class="row ">
+                        <div class="col-lg-6">
+                            <div class="upload formcode" type="text">
+                                <!-- <input class="type" type="text"  placeholder="Type or paste here..."> -->
+                                <textarea name="encoded" id="encoded" cols="68" rows="5"
+                                    placeholder="Type or paste here..."></textarea>
+
+
+                                <h4>OR Upload the File</h4>
+                                <form class="form-container" id="upload_form" enctype="multipart/form-data"
+                                    method="post">
+                                    <div class="upload-files-container">
+
+                                        <div class="drag-file-area">
+                                            <div class="uploadimg">
+                                                <img src="assets/images/upload.png" alt="">
+                                            </div>
+                                            <span class="material-icons-outlined upload-icon"> </span>
+                                            <div class="up">
+                                                <div class="dragdop">
+                                                    <h3 class="dynamic-message"> Drag & drop file or </h3>
+                                                    <label class="label">
+                                                        <span class="browse-files">
+                                                            <input type="file" class="default-file-input" name="files"
+                                                                id="files" onchange="readURL(this);" accept="image/*" />
+                                                            <span class="browse-files-text"> browse
+                                                                media on your
+                                                                device
+                                                            </span>
+                                                        </span>
+                                                    </label>
+
+                                                </div>
+                                                <p> File types supported JPG, PNG, GIF, SVG, Max size 40 MB</p>
+                                                <button class="file-upload-btn" type="button"
+                                                    onclick="$('.file-upload-input').trigger( 'click' )">Add
+                                                    Image</button>
+                                            </div>
+                                        </div>
+
+                                        <span class="cannot-upload-message"> <span
+                                                class="material-icons-outlined">error</span>
+                                            Please select a file first
+                                            <span class="material-icons-outlined cancel-alert-button">cancel</span>
+                                        </span>
+
+                                        <div class="file-upload-content" style="display: none;">
+                                            <div class="image-title-wrap">
+                                                <div class="file-info">
+                                                    <span class="material-icons-outlined file-icon">
+                                                        <i class="fas fa-file"></i>
+                                                    </span> |
+                                                    <span class="image-title"> </span>
+                                                    <span class="file-size"></span>
+
+
+
+
+                                                    <!-- <div id="uploaded_image" class="row mt-5"></div> -->
+                                                </div>
+                                                <button type="button" onclick="removeUpload()" class="remove-image">
+                                                    <span class="material-icons remove-file-icon"><svg width="20"
+                                                            height="20" viewBox="0 0 20 20" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M10.0001 18.3337C5.39758 18.3337 1.66675 14.6028 1.66675 10.0003C1.66675 5.39783 5.39758 1.66699 10.0001 1.66699C14.6026 1.66699 18.3334 5.39783 18.3334 10.0003C18.3334 14.6028 14.6026 18.3337 10.0001 18.3337ZM10.0001 8.82199L7.64341 6.46449L6.46425 7.64366L8.82175 10.0003L6.46425 12.357L7.64341 13.5362L10.0001 11.1787L12.3567 13.5362L13.5359 12.357L11.1784 10.0003L13.5359 7.64366L12.3567 6.46449L10.0001 8.82199Z"
+                                                                fill="#CED4DA" />
+                                                        </svg>
+                                                    </span>
+                                                </button>
+                                                <div id="up-progress" class="up-progress">
+                                                    <div id="up-bar"></div>
+                                                    <div id="up-percent">0%</div>
+                                                </div>
+
+                                                <!-- <progress id="progressBar" value="0" max="100"
+                                                style="width:100%;"></progress> -->
+
+                                                <h3 id="status"></h3>
+                                                <p id="loaded_n_total"></p>
+
+                                            </div>
+                                        </div>
+                                        <button type="button" class="upload-button"> Upload </button>
+                                    </div>
+                                </form>
+                                <a href="#" id="" class="encodebtn">ENCODE</a>
+                                <a href="#" id="" class="encodebtn2">ENCODE</a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="copy">
+                                <textarea id="base64" cols="68" rows="5" placeholder="Result Goes here..."
+                                    readonly></textarea>
+                                <div class="file-upload-content" style="display: none;">
+
+                                    <div class="image-title-wrap" id="text-val">
+                                        <div class="file-info"> <span
+                                                class="material-icons-outlined file-icon">description</span> |
+                                            <span class="image-title"> </span> <span class="file-size">
+                                            </span>
+                                        </div>
+                                        <button type="button" onclick="removeUpload()" class="remove-image">
+
+                                            <span class="material-icons remove-file-icon"><svg width="20" height="20"
+                                                    viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M10.0001 18.3337C5.39758 18.3337 1.66675 14.6028 1.66675 10.0003C1.66675 5.39783 5.39758 1.66699 10.0001 1.66699C14.6026 1.66699 18.3334 5.39783 18.3334 10.0003C18.3334 14.6028 14.6026 18.3337 10.0001 18.3337ZM10.0001 8.82199L7.64341 6.46449L6.46425 7.64366L8.82175 10.0003L6.46425 12.357L7.64341 13.5362L10.0001 11.1787L12.3567 13.5362L13.5359 12.357L11.1784 10.0003L13.5359 7.64366L12.3567 6.46449L10.0001 8.82199Z"
+                                                        fill="#CED4DA" />
+                                                </svg>
+                                            </span>
+
+                                        </button>
+                                    </div>
+                                    <div class="download">
+                                        <span>Here is decode File</span>
+                                        <img src="assets/images/line.png" alt="">
+                                        <button id="dwn-btn">Download</button>
+                                    </div>
+                                </div>
+
+                                <button id="copy" type="button"><svg width="18" height="18" viewBox="0 0 18 18"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_46_836)">
+                                            <path
+                                                d="M5.25 4.5V2.25C5.25 2.05109 5.32902 1.86032 5.46967 1.71967C5.61032 1.57902 5.80109 1.5 6 1.5H15C15.1989 1.5 15.3897 1.57902 15.5303 1.71967C15.671 1.86032 15.75 2.05109 15.75 2.25V12.75C15.75 12.9489 15.671 13.1397 15.5303 13.2803C15.3897 13.421 15.1989 13.5 15 13.5H12.75V15.75C12.75 16.164 12.4125 16.5 11.9948 16.5H3.00525C2.90635 16.5006 2.8083 16.4816 2.71674 16.4442C2.62519 16.4068 2.54192 16.3517 2.47174 16.282C2.40156 16.2123 2.34584 16.1294 2.30779 16.0381C2.26974 15.9468 2.2501 15.8489 2.25 15.75L2.25225 5.25C2.25225 4.836 2.58975 4.5 3.0075 4.5H5.25ZM3.75225 6L3.75 15H11.25V6H3.75225ZM6.75 4.5H12.75V12H14.25V3H6.75V4.5Z"
+                                                fill="black" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_46_836">
+                                                <rect width="18" height="18" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                    Copy<span class="copiedtext" aria-hidden="true">Copied</span></button>
+
+                            </div>
+
+                        </div>
+                        <span class="rightarrow"><svg width="25" height="24" viewBox="0 0 25 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_83_471)">
+                                    <path
+                                        d="M16.672 11L11.308 5.636L12.722 4.222L20.5 12L12.722 19.778L11.308 18.364L16.672 13H4.5V11H16.672Z"
+                                        fill="black" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_83_471">
+                                        <rect width="24" height="24" fill="white" transform="translate(0.5)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="letsgo">
+                        <p>Do you want decode more?</p>
+                        <a href="#" onClick="location.reload();">Let’s GO</a>
+                    </div>
+                    <span class="encodes"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_26_198)">
+                                <path
+                                    d="M9 16.5C4.85775 16.5 1.5 13.1423 1.5 9C1.5 4.85775 4.85775 1.5 9 1.5C13.1423 1.5 16.5 4.85775 16.5 9C16.5 13.1423 13.1423 16.5 9 16.5ZM9 15C10.5913 15 12.1174 14.3679 13.2426 13.2426C14.3679 12.1174 15 10.5913 15 9C15 7.4087 14.3679 5.88258 13.2426 4.75736C12.1174 3.63214 10.5913 3 9 3C7.4087 3 5.88258 3.63214 4.75736 4.75736C3.63214 5.88258 3 7.4087 3 9C3 10.5913 3.63214 12.1174 4.75736 13.2426C5.88258 14.3679 7.4087 15 9 15ZM8.25 5.25H9.75V6.75H8.25V5.25ZM8.25 8.25H9.75V12.75H8.25V8.25Z"
+                                    fill="#868E96" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_26_198">
+                                    <rect width="18" height="18" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <p class="page">To encode binaries (like images, documents, etc.) use the file upload form a
+                            little
+                            further down on this page.</p>
+                    </span>
+                </div>
+            </div>
+            <div class="base">
+                <h2>What’s <span> base64?</span></h2>
+                <p>Meet Base64 Decode and Encode, a simple online tool that does exactly what it says: decodes from
+                    Base64
+                    encoding as well as encodes into it quickly and easily. Base64 encode your data without hassles or
+                    decode it into a human-readable format.</p>
+                <p>Base64 encoding schemes are commonly used when there is a need to encode binary data, especially when
+                    that data needs to be stored and transferred over media that are designed to deal with text. This
+                    encoding helps to ensure that the data remains intact without modification during transport. Base64
+                    is
+                    used commonly in a number of applications including email via MIME, as well as storing complex data
+                    in
+                    XML or JSON.</p>
+
+                <h4>Advance Option</h4>
+                <ul>
+                    <li>Character set: Our website uses the UTF-8 character set, so your input data is transmitted in
+                        that
+                        format. Change this option if you want to convert the data to another character set before
+                        encoding.
+                        Note that in case of text data, the encoding scheme does not contain the character set, so you
+                        may
+                        have to specify the appropriate set during the decoding process. As for files, the binary option
+                        is
+                        the default, which will omit any conversion; this option is required for everything except plain
+                        text documents.</li>
+                    <li>Newline separator: Unix and Windows systems use different line break characters, so prior to
+                        encoding either variant will be replaced within your data by the selected option. For the files
+                        section, this is partially irrelevant since files already contain the corresponding separators,
+                        but
+                        you can define which one to use for the "encode each line separately" and "split lines into
+                        chunks"
+                        functions.</li>
+                    <li>Encode each line separately: Even newline characters are converted to their Base64 encoded
+                        forms.
+                        Use this option if you want to encode multiple independent data entries separated with line
+                        breaks.
+                        (*)</li>
+                    <li>Split lines into chunks: The encoded data will become a continuous text without any whitespaces,
+                        so
+                        check this option if you want to break it up into multiple lines. The applied character limit is
+                        defined in the MIME (RFC 2045) specification, which states that the encoded lines must be no
+                        more
+                        than 76 characters long. (*)</li>
+                    <li>Perform URL-safe encoding: Using standard Base64 in URLs requires encoding of "+", "/" and "="
+                        characters into their percent-encoded form, which makes the string unnecessarily longer. Enable
+                        this
+                        option to encode into an URL- and filename- friendly Base64 variant (RFC 4648 / Base64URL) where
+                        the
+                        "+" and "/" characters are respectively replaced by "-" and "_", as well as the padding "="
+                        signs
+                        are omitted.</li>
+                    <li>Live mode: When you turn on this option the entered data is encoded immediately with your
+                        browser's
+                        built-in JavaScript functions, without sending any information to our servers. Currently this
+                        mode
+                        supports only the UTF-8 character set.</li>
+                </ul>
+
+                <h4>Safe & Secure</h4>
+                <ul>
+                    <li>All communications with our servers come through secure SSL encrypted connections (https). We
+                        delete
+                        uploaded files from our servers immediately after being processed and the resulting downloadable
+                        file is deleted right after the first download attempt or 15 minutes of inactivity (whichever is
+                        shorter). We do not keep or inspect the contents of the submitted data or uploaded files in any
+                        way.
+                        Read our privacy policy below for more details.</li>
+                </ul>
+                <h4>Completely free</h4>
+                <ul>
+                    <li>Our tool is free to use. From now on, you don't need to download any software for such simple
+                        tasks.
+                    </li>
+                </ul>
+                <h4>Details of the Base64 encoding</h4>
+                <ul class="term">
+                    <li>Base64 is a generic term for a number of similar encoding schemes that encode binary data by
+                        treating it numerically and translating it into a base-64 representation. The Base64 term
+                        originates
+                        from a specific MIME-content transfer encoding.</li>
+                </ul>
+                <h4>Design</h4>
+                <ul class="term">
+                    <li>The particular choice of characters to make up the 64 characters required for Base64 varies
+                        between
+                        implementations. The general rule is to choose a set of 64 characters that is both 1) part of a
+                        subset common to most encodings, and 2) also printable. This combination leaves the data
+                        unlikely to
+                        be modified in transit through systems such as email, which were traditionally not 8-bit clean.
+                        For
+                        example, MIME's Base64 implementation uses A-Z, a-z, and 0-9 for the first 62 values, as well as
+                        "+"
+                        and "/" for the last two. Other variations, usually derived from Base64, share this property but
+                        differ in the symbols chosen for the last two values; an example is the URL and filename safe
+                        "RFC
+                        4648 / Base64URL" variant, which uses "-" and "_".</li>
+                </ul>
+                <h4>Example</h4>
+                <ul class="term">
+                    <li>Here's a quote snippet from Thomas Hobbes's Leviathan:</li>
+                </ul>
+                <h4 class="man">"Man is distinguished, not only by his reason, but ..."</h4>
+                <h4>This is represented as an ASCII byte sequence and encoded in MIME's Base64 scheme as follows: </h4>
+                <p class="new">TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dCAuLi4=</p>
+                <p>In the above quote the encoded value of Man is TWFu. Encoded in ASCII, the letters "M", "a", and "n"
+                    are
+                    stored as the bytes 77, 97, 110, which are equivalent to "01001101", "01100001", and "01101110" in
+                    base-2. These three bytes are joined together in a 24 bit buffer producing the binary sequence
+                    "010011010110000101101110". Packs of 6 bits (6 bits have a maximum of 64 different binary values)
+                    are
+                    converted into 4 numbers (24 = 4 * 6 bits) which are then converted to their corresponding values in
+                    Base64.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="footerdetail">
+                    <a href="#"><img src="assets/images/footerlogo.png" alt=""></a>
+                    <p>This website uses cookies. We use cookies to personalise content/ads and to analyse our traffic
+                    </p>
+
+                </div>
+                <ul class="privacydetail">
+                    <li><a href="#"> Privacy policy</a></li>
+                    <li><a href="#"> Privacy policy</a></li>
+                    <li><a href="#"> Privacy policy</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <div class="coprights">
+                    <p> © 2010-2022 <a href="mailto:base64encode.org@example.com">base64encode.org </a></p>
+                    <div class="terms">
+                        <div class="policy">
+                            <a href="#"> Privacy Policy</a>
+                            <a href="#">Term of Conditions</a>
+                        </div>
+                        <ul class="icondegtail">
+                            <li>
+                                <a href="#"><svg width="10" height="16" viewBox="0 0 10 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M3.23493 15.1965L3.21446 8.89954H0.535889V6.20085H3.21446V4.40172C3.21446 1.97362 4.70688 0.803467 6.85676 0.803467C7.88658 0.803467 8.77166 0.880712 9.02958 0.915238V3.45274L7.53853 3.45343C6.36931 3.45343 6.14292 4.0132 6.14292 4.83463V6.20085H9.46446L8.5716 8.89954H6.14291V15.1965H3.23493Z"
+                                            fill="white" />
+                                    </svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M10.3679 4.44232C10.7987 4.44232 11.1479 4.09311 11.1479 3.66232C11.1479 3.23154 10.7987 2.88232 10.3679 2.88232C9.93711 2.88232 9.58789 3.23154 9.58789 3.66232C9.58789 4.09311 9.93711 4.44232 10.3679 4.44232Z"
+                                            fill="white" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M3.75 7C3.75 8.79238 5.20763 10.25 7 10.25C8.79238 10.25 10.25 8.79238 10.25 7C10.25 5.20763 8.79238 3.75 7 3.75C5.20763 3.75 3.75 5.20763 3.75 7ZM5.375 7C5.375 6.10381 6.10381 5.375 7 5.375C7.89619 5.375 8.625 6.10381 8.625 7C8.625 7.89619 7.89619 8.625 7 8.625C6.10381 8.625 5.375 7.89619 5.375 7Z"
+                                            fill="white" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M3.75 13.5H10.25C11.9205 13.5 13.5 11.9205 13.5 10.25V3.75C13.5 2.0795 11.9205 0.5 10.25 0.5H3.75C2.0795 0.5 0.5 2.0795 0.5 3.75V10.25C0.5 11.9205 2.0795 13.5 3.75 13.5ZM2.125 3.75C2.125 2.99031 2.99031 2.125 3.75 2.125H10.25C11.0097 2.125 11.875 2.99031 11.875 3.75V10.25C11.875 11.0097 11.0097 11.875 10.25 11.875H3.75C2.97569 11.875 2.125 11.0243 2.125 10.25V3.75Z"
+                                            fill="white" />
+                                    </svg>
+
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M15.1431 1.50218C14.6074 1.77205 14.0717 1.862 13.4467 1.95196C14.0717 1.59213 14.5181 1.0524 14.6967 0.332745C14.161 0.69257 13.536 0.872483 12.8217 1.0524C12.286 0.512657 11.4824 0.152832 10.6789 0.152832C9.16099 0.152832 7.82171 1.50218 7.82171 3.12139C7.82171 3.39126 7.82171 3.57117 7.91099 3.75109C5.50028 3.66113 3.26814 2.4917 1.83956 0.69257C1.57171 1.14235 1.48242 1.59213 1.48242 2.22183C1.48242 3.21135 2.01814 4.11091 2.82171 4.65065C2.37528 4.65065 1.92885 4.47074 1.48242 4.29082C1.48242 5.73012 2.46456 6.89956 3.80385 7.16943C3.53599 7.25938 3.26814 7.25938 3.00028 7.25938C2.82171 7.25938 2.64314 7.25938 2.46456 7.16943C2.82171 8.33886 3.89314 9.23842 5.23242 9.23842C4.25028 10.048 3.00028 10.4978 1.57171 10.4978C1.30385 10.4978 1.12528 10.4978 0.857422 10.4978C2.19671 11.3074 3.71456 11.8472 5.32171 11.8472C10.6789 11.8472 13.6253 7.34934 13.6253 3.48122C13.6253 3.39126 13.6253 3.21135 13.6253 3.12139C14.2503 2.67161 14.786 2.13187 15.1431 1.50218Z"
+                                            fill="white" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+    </footer>
+    <a onclick="topFunction()" id="myBtn" title="Go to top" style="display: block;"></a>
+
+    <!-- Optional JavaScript -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.fancybox.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/fontawesome.js"></script>
+    <script src="assets/js/stats.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $("#navbarNav .navbar-nav  li").click(function () {
+
+                $("#navbarNav .navbar-nav li").removeClass("active");
+                $(this).addClass("active");
+            });
+
+        });
+        $(document).ready(function () {
+            $("#username3").click(function () {
+                // $("#encoded").attr('disabled', !$("#encoded").attr('disabled'));
+                // $("#encodeded").attr('disabled', !$("#encodeded").attr('disabled'));
+                $(".default-file-input").attr('disabled', !$(".default-file-input").attr('disabled'));
+                $(".encodebtn").attr('disabled', !$(".encodebtn").attr('disabled'));
+                $('.encodebtn,.drag-file-area ,.file-block').toggleClass("disable");
+                $('.livedemo h4').toggleClass("livedemoactive");
+                $('textarea#encoded').toggleClass("encodeenable");
+                $('.formcode').addClass("formcode2");
+                $('html').removeClass("uploadfile");
+                $('html').removeClass("fileuploadsmain");
+
+                $('.formcode').toggleClass("formcode3");
+
+            });
+        });
+
+        $("#files").click(function () {
+            $('html').addClass("fileuploads");
+        })
+
+        $(document).ready(function () {
+            $('#username3').click(function () {
+                $('#encoded').val('');
+                $('#encodeded').val('');
+                // $('#base64').val('');
+                $('.formcode3').removeClass("valid");
+            });
+        });
+
+
+        $(document).ready(function () {
+
+
+
+
+            $('#encoded').on('keyup', function () {
+                if ($('#encoded').val() == '') {
+                    $(".formcode").removeClass('valid');
+                } else {
+                    $(".formcode").addClass('valid');
+                }
+            })
+        });
+
+
+        $(document).ready(function () {
+
+
+
+
+            $('#encodeded').on('keyup', function () {
+                if ($('#encodeded').val() == '') {
+                    $(".formcode").removeClass('valid');
+                } else {
+                    $(".formcode").addClass('valid');
+                }
+            })
+        });
+
+
+        $(document).ready(function () {
+            $(".remove-image").click(function () {
+                $('html').removeClass('uploadfile');
+
+            });
+        });
+    </script>
+
+
+
+
+    <script>
+        // encode
+        $('#encoded').keyup(function () {
+            processChange();
+        });
+
+        $('#encoded').on('drop', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var file = e.originalEvent.dataTransfer.files[0];
+            var r = new FileReader();
+            r.readAsDataURL(file);
+        });
+
+        $('#copy').click(function () {
+            $('#base64').select();
+            try {
+                var success = document.execCommand('copy');
+                if (!success)
+                    throw 'shucks';
+            } catch (e) {
+                window.prompt('Your browser doesn\'t support auto-copying, please copy the preselected text below:', $(
+                    '#base64').text());
+            }
+        });
+
+        function processChange() {
+            var newVal = '';
+            var inputVal = $('#encoded').val();
+            newVal = window.btoa(inputVal);
+
+            $('.encodebtn').click(function () {
+                $('#base64').text(newVal);
+            })
+
+
+
+
+            $('.formcode3').keyup(function () {
+                $('#base64').text(newVal);
+            })
+
+
+
+        }
+
+        // decode
+
+
+        $('#encodeded').keyup(function () {
+            processChange2();
+        });
+
+        $('#encodeded').on('drop', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var file = e.originalEvent.dataTransfer.files[0];
+            var r = new FileReader();
+            r.readAsDataURL(file);
+        });
+
+        $('#copy').click(function () {
+            $('#base64').select();
+            try {
+                var success = document.execCommand('copy');
+                if (!success)
+                    throw 'shucks';
+            } catch (e) {
+                window.prompt('Your browser doesn\'t support auto-copying, please copy the preselected text below:', $(
+                    '#base642').text());
+            }
+        });
+        $('#files').attr('title', '');
+
+        function processChange2() {
+            var newVal = '';
+            var inputVal = $('#encodeded').val();
+            newVal = window.atob(inputVal);
+            $('#encodebtns').click(function () {
+                $('#base64').text(newVal);
+            })
+            $('.formcode3').keyup(function () {
+                $('#base64').text(newVal);
+            })
+        }
+    </script>
+
+    <script>
+        function _(el) {
+            return document.getElementById(el);
+        }
+
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.image-upload-wrap').hide();
+
+                    $('.file-upload-image').attr('src', e.target.result);
+
+                    $(".encodebtn2").click(function () {
+                        $('.file-upload-content').show();
+                        $('html').addClass('uploadfile');
+                    })
+                    $('.file-upload-content').show();
+
+
+                    var files = _("files").files[0];
+                    // alert(file.name+" | "+file.size+" | "+file.type);
+                    var formdata = new FormData();
+                    formdata.append("files", files);
+                    var ajax = new XMLHttpRequest();
+                    ajax.upload.addEventListener("progress", progressHandler, false);
+                    ajax.addEventListener("load", completeHandler, false);
+
+                    ajax.open("POST",
+                        "upload.php"
+                    ); // http://www.developphp.com/video/JavaScript/File-Upload-Progress-Bar-Meter-Tutorial-Ajax-PHP
+                    //use file_upload_parser.php from above url
+                    ajax.send(formdata);
+
+
+
+
+                    $('html').addClass("fileuploadsmain");
+                    $('.up-progress').toggleClass("up-progress2");
+                    $('.encodebtn').addClass('encodebtnold');
+                    $('.encodebtn2').addClass('encodebtn3');
+
+                    $('.encodebtn3').addClass('encodebtnold');
+                    $('.encodebtn4').addClass('encodebtn3');
+
+                    $('.image-title').html(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            } else {
+                removeUpload();
+            }
+
+
+        }
+
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+        }
+
+
+        function progressHandler(event) {
+            _("loaded_n_total").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
+            var percent = (event.loaded / event.total) * 100;
+            _("progressBar").value = Math.round(percent);
+            _("status").innerHTML = Math.round(percent) + "% uploaded... please wait";
+        }
+
+        function completeHandler(event) {
+            _("status").innerHTML = event.target.responseText;
+            _("progressBar").value = 0; //wil clear progress bar after successful upload
+        }
+
+
+        $('.image-upload-wrap').bind('dragover', function () {
+            $('.image-upload-wrap').addClass('image-dropping');
+
+        });
+        $('.image-upload-wrap').bind('dragleave', function () {
+            $('.image-upload-wrap').removeClass('image-dropping');
+
+        });
+    </script>
+
+
+
+
+</body>
+
+</html>
