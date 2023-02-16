@@ -1753,7 +1753,8 @@ button.remove-image {
     background: transparent;
 }
 
-span.image-title {
+span.image-title,
+span.image-titles {
     padding-left: 10px;
 }
 
@@ -2032,7 +2033,8 @@ a.encodebtn {
 }
 
 a.encodebtn2 {
-    display: none;
+    /* display: none; */
+    opacity: 1;
 }
 
 a.encodebtn.encodebtnold {
@@ -2151,7 +2153,7 @@ html.uploadfile a.encodebtn2.encodebtn3 {
 }
 
 html.fileuploads .copy .file-upload-content {
-    display: none !important;
+    /* display: none !important; */
 }
 
 html.fileuploads.uploadfile .file-upload-content {
@@ -2405,4 +2407,33 @@ html.fileuploads.fileuploadsmain.uploadfile p#loaded_n_total {
 
 a.navbar-brand {
     width: 230px;
+}
+
+.copy {
+    overflow: hidden;
+}
+
+.upload.formcode.formcode3 h4 {
+    display: none;
+}
+
+.upload.formcode.formcode3 form#upload_form {
+    display: none;
+}
+
+.upload.formcode.formcode3 a#encodebtn2 {
+    display: none;
+}
+
+.upload.formcode.formcode3 textarea#encoded {
+    height: 370px;
+
+}
+
+.removeprogress:after {
+    display: none !important;
+}
+
+.removeprogress {
+    display: none !important;
 }

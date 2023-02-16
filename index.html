@@ -243,7 +243,7 @@
 
                             <div class="upload formcode" type="text">
                                 <!-- <input class="type" type="text"  placeholder="Type or paste here..."> -->
-                                <textarea name="encodeded" id="encodeded" cols="68" rows="5"
+                                <textarea name="encoded" id="encoded" cols="68" rows="5"
                                     placeholder="Type or paste here..."></textarea>
                                 </input>
 
@@ -261,7 +261,7 @@
                                                     <h3 class="dynamic-message"> Drag & drop file or </h3>
                                                     <label class="label"> <span class="browse-files"> <input type="file"
                                                                 class="default-file-input" id="files"
-                                                                onchange="readURL(this);" accept="image/*" /> <span
+                                                                onchange="readURL(this);" accept="*" /> <span
                                                                 class="browse-files-text"> browse
                                                                 media on your
                                                                 device</span> </span> </label>
@@ -326,9 +326,8 @@
                                 </form>
 
 
-                                <a href="#" id="encodebtns" class="encodebtn">DECODE</a>
-                                <a href="#" id="" class="encodebtn2">DECODE</a>
-
+                                <a href="#" onclick="processChange()" id="decodebtn2"
+                                class="encodebtn2 encodebtn">Decode</a>
                             </div>
 
                         </div>
@@ -360,7 +359,7 @@
                                     <div class="download">
                                         <span>Here is decode File</span>
                                         <img src="assets/images/line.png" alt="">
-                                        <button id="dwn-btn">Download</button>
+                                        <button id="dwn-btn" onclick="downloadFile()">Download</button>
                                     </div>
                                 </div>
 
@@ -672,35 +671,71 @@
                     '#base64').text());
             }
         });
-
         function processChange() {
             var newVal = '';
             var inputVal = $('#encoded').val();
-            newVal = window.btoa(inputVal);
-
-            $('.encodebtn').click(function () {
-                $('#base64').text(newVal);
-            })
-
-
-
-
-            $('.formcode3').keyup(function () {
-                $('#base64').text(newVal);
-            })
-
-
-
+            var selected = document.getElementById('files');
+           
+            newVal = window.atob(inputVal);
+            if (inputVal !==undefined && inputVal!=="") {
+              
+                $('#encodebtns').click(function () {
+                    $('#base64').text(newVal);
+                });
+                $('.formcode3').keyup(function () {
+                    $('#base64').text(newVal);
+                });
+                
+               
+            } else {
+              
+               decodeFile();
+            }
         }
 
-        // decode
+       // .txt
+       function decodeFile(e) {
+            var file = document.getElementById('files').files[0];
+          
+            var reader = new FileReader();
+            reader.addEventListener("load", () => {
+                
+                    sessionStorage.setItem("Base64String", reader.result);
+                },
+                false
+            );
+            reader.readAsText(file);
+        }
+
+        // download
+        function downloadFile() {
+            
+            var arr = sessionStorage.getItem("Base64String").split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), 
+            n = bstr.length, 
+            u8arr = new Uint8Array(n);
+
+            var fileExtn = mime.split('/');
+            var fileName = "decodedFile."+ fileExtn[1];
+
+            while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+            }
+        
+            const blob= new File([u8arr], fileName, {type:mime});
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = fileName;
+            link.click();
+        }
 
 
-        $('#encodeded').keyup(function () {
-            processChange2();
+        $('#encoded').keyup(function () {
+            processChange();
         });
 
-        $('#encodeded').on('drop', function (e) {
+        $('#encoded').on('drop', function (e) {
             e.preventDefault();
             e.stopPropagation();
             var file = e.originalEvent.dataTransfer.files[0];
@@ -721,17 +756,7 @@
         });
         $('#files').attr('title', '');
 
-        function processChange2() {
-            var newVal = '';
-            var inputVal = $('#encodeded').val();
-            newVal = window.atob(inputVal);
-            $('#encodebtns').click(function () {
-                $('#base64').text(newVal);
-            })
-            $('.formcode3').keyup(function () {
-                $('#base64').text(newVal);
-            })
-        }
+        
     </script>
 
     <script>
@@ -740,58 +765,40 @@
         }
 
         function readURL(input) {
-
             if (input.files && input.files[0]) {
-
                 var reader = new FileReader();
-
                 reader.onload = function (e) {
                     $('.image-upload-wrap').hide();
-
                     $('.file-upload-image').attr('src', e.target.result);
-
                     $(".encodebtn2").click(function () {
                         $('.file-upload-content').show();
-                        $('html').addClass('uploadfile');
+                        $("textarea#base64,button#copy,.drag-file-area").css("display", "none");
+                        $(".letsgo").css("display", "flex");
+                        $(".up-progress").addClass("removeprogress")
                     })
                     $('.file-upload-content').show();
 
-
                     var files = _("files").files[0];
-                    // alert(file.name+" | "+file.size+" | "+file.type);
                     var formdata = new FormData();
                     formdata.append("files", files);
                     var ajax = new XMLHttpRequest();
                     ajax.upload.addEventListener("progress", progressHandler, false);
                     ajax.addEventListener("load", completeHandler, false);
-
                     ajax.open("POST",
                         "upload.php"
-                    ); // http://www.developphp.com/video/JavaScript/File-Upload-Progress-Bar-Meter-Tutorial-Ajax-PHP
-                    //use file_upload_parser.php from above url
+                    );
                     ajax.send(formdata);
-
-
-
-
                     $('html').addClass("fileuploadsmain");
                     $('.up-progress').toggleClass("up-progress2");
                     $('.encodebtn').addClass('encodebtnold');
                     $('.encodebtn2').addClass('encodebtn3');
-
                     $('.encodebtn3').addClass('encodebtnold');
-                    $('.encodebtn4').addClass('encodebtn3');
-
                     $('.image-title').html(input.files[0].name);
                 };
-
                 reader.readAsDataURL(input.files[0]);
-
             } else {
                 removeUpload();
             }
-
-
         }
 
         function removeUpload() {
