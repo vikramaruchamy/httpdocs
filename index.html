@@ -503,7 +503,7 @@
                 </ul>-->
                 <div class="coprights">
                     <p> © 2022-2023 <a href="mailto:base64decodepro@gmail.com">Base64 Decode </a></p>
-                    <p> Powered by solV. Technologies</a></p>
+                    <p> Powered by Thinksolv. Technologies private limited.</a></p>
                     <div class="terms">
                         <div class="policy">
                             <a href="https://www.base64decode.pro/blog/privacy-policy/"> Privacy Policy</a>
@@ -619,7 +619,31 @@
             })
         });
 
+        $(document).ready(function () {
+            $('#encodeded').on('keyup', function () {
+                if ($('#encodeded').val() !== '') {
+                    $("#form_mail, #uplod_file").css("display", "none");
+                    $('#encodebtns').css({
+                        opacity: 9
+                    });
+                } else {
+                    $("#form_mail, #uplod_file").css("display", "block");
+                }
+            })
 
+            $('#files').on('change', function (e) {
+                var fileSizeInBytes = this.files[0].val();
+                if (fileSizeInBytes > files[0]) {
+                    $('#encodebtns').css({
+                        opacity: 9
+                    });
+                } else {
+                    $('#encodebtns').css({
+                        opacity: 0.5
+                    });
+                }
+            });
+        });
         $(document).ready(function () {
 
 
