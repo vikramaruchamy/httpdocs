@@ -702,15 +702,7 @@
             var liveMode = document.getElementById('livemode').checked;
             newVal = window.atob(inputVal);
             if (inputVal !==undefined && inputVal!=="") {
-              
-                $('#encodebtn').click(function () {
-                    $('#base64').text(newVal);
-                });
-                $('.formcode3').keyup(function () {
-                    $('#base64').text(newVal);
-                });
-                
-               
+                $('#base64').text(newVal);    
             } else {
                 var liveMode = document.getElementById('livemode').checked;
                 //decode file only if live mode is unselected
