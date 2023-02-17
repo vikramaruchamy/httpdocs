@@ -230,8 +230,8 @@
                                     </svg>
 
                                 </span>-->
-                                <input type="checkbox" hidden="hidden" id="username3">
-                                <label class="switch" for="username3"></label>
+                                <input type="checkbox" hidden="hidden" id="livemode">
+                                <label class="switch" for="livemode"></label>
                             </div>
                         </div>
                     </div>
@@ -244,7 +244,7 @@
                             <div class="upload formcode" type="text">
                                 <!-- <input class="type" type="text"  placeholder="Type or paste here..."> -->
                                 <textarea name="encoded" id="encoded" cols="68" rows="5"
-                                    placeholder="Type or paste here..."></textarea>
+                                    placeholder="Type or paste here..." ></textarea>
                                 </input>
 
                                 <h4>OR Upload the File</h4>
@@ -325,7 +325,7 @@
                                     </div>
                                 </form>
 
-                                <a href="#" onclick="processChange()" id="encodebtns" class="encodebtn2 encodebtn">DECODE</a>
+                                <a href="#" onclick="processChange()" id="encodebtn" class="encodebtn2 encodebtn">DECODE</a>
                                 <!-- <a href="#" onclick="processChange()" id="decodebtn2"
                                 class="encodebtn2 encodebtn">Decode</a> -->
                             </div>
@@ -573,7 +573,7 @@
 
         });
         $(document).ready(function () {
-            $("#username3").click(function () {
+            $("#livemode").click(function () {
                 // $("#encoded").attr('disabled', !$("#encoded").attr('disabled'));
                 // $("#encodeded").attr('disabled', !$("#encodeded").attr('disabled'));
                 $(".default-file-input").attr('disabled', !$(".default-file-input").attr('disabled'));
@@ -596,21 +596,31 @@
             $('html').addClass("fileuploads");
         })
         $(document).ready(function () {
-            $('#username3').click(function () {
+            $('#livemode').click(function () {
                 $('#encoded').val('');
-                $('#encodeded').val('');
-                // $('#base64').val('');
                 $('.formcode3').removeClass("valid");
             });
         });
 
+        function inputTextChanged(){
+            alert("Keyup triggerd");
+        }
 
         $(document).ready(function () {
 
-
-
+            $('#encoded').on("input", function(event) {
+           
+                if ($('#encoded').val() == '') {
+                    $(".formcode").removeClass('valid');
+                    $('#base64').text("");
+                } else {
+                    $(".formcode").addClass('valid');
+                }
+            
+            });
 
             $('#encoded').on('keyup', function () {
+                
                 if ($('#encoded').val() == '') {
                     $(".formcode").removeClass('valid');
                 } else {
@@ -620,13 +630,15 @@
         });
 
         $(document).ready(function () {
-            $('#encodeded').on('keyup', function () {
-                if ($('#encodeded').val() !== '') {
+            $('#encoded').on('keyup', function () {
+                if ($('#encoded').val() !== '') {
+                    
                     $("#form_mail, #uplod_file").css("display", "none");
-                    $('#encodebtns').css({
+                    $('#encodebtn').css({
                         opacity: 9
                     });
                 } else {
+                    
                     $("#form_mail, #uplod_file").css("display", "block");
                 }
             })
@@ -634,29 +646,17 @@
             $('#files').on('change', function (e) {
                 var fileSizeInBytes = this.files[0].val();
                 if (fileSizeInBytes > files[0]) {
-                    $('#encodebtns').css({
+                    $('#encodebtn').css({
                         opacity: 9
                     });
                 } else {
-                    $('#encodebtns').css({
+                    $('#encodebtn').css({
                         opacity: 0.5
                     });
                 }
             });
         });
-        $(document).ready(function () {
-
-
-
-
-            $('#encodeded').on('keyup', function () {
-                if ($('#encodeded').val() == '') {
-                    $(".formcode").removeClass('valid');
-                } else {
-                    $(".formcode").addClass('valid');
-                }
-            })
-        });
+        
 
 
         $(document).ready(function () {
@@ -675,7 +675,7 @@
         $('#encoded').keyup(function () {
             processChange();
         });
-
+        
         $('#encoded').on('drop', function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -699,11 +699,11 @@
             var newVal = '';
             var inputVal = $('#encoded').val();
             var selected = document.getElementById('files');
-           
+            var liveMode = document.getElementById('livemode').checked;
             newVal = window.atob(inputVal);
             if (inputVal !==undefined && inputVal!=="") {
               
-                $('#encodebtns').click(function () {
+                $('#encodebtn').click(function () {
                     $('#base64').text(newVal);
                 });
                 $('.formcode3').keyup(function () {
@@ -712,8 +712,11 @@
                 
                
             } else {
-              
+                var liveMode = document.getElementById('livemode').checked;
+                //decode file only if live mode is unselected
+                if(!liveMode){
                decodeFile();
+                }
             }
         }
 
@@ -755,9 +758,7 @@
         }
 
 
-        $('#encoded').keyup(function () {
-            processChange();
-        });
+        
 
         $('#encoded').on('drop', function (e) {
             e.preventDefault();
