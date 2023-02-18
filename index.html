@@ -616,10 +616,6 @@
             });
         });
 
-        function inputTextChanged() {
-            alert("Keyup triggerd");
-        }
-
         $(document).ready(function () {
 
             $('#encoded').on("input", function (event) {
@@ -760,17 +756,17 @@
                 //Base64 string doesn't have the prefix metadata to that speicifies the mime type. Hence identify the filetype using prefix
                 arr[0] = '';
                 arr[1] = base64String;
-                alert(arr[1]);
+                
                 bstr = atob(base64String);
                 n = bstr.length;
                 u8arr = new Uint8Array(n);
                 mime = base64FileHeaderMapper(base64String);
-                fileExtn = mime.split('/')[1];
+                fileExtn = (mime.split('/')[1]).toLowerCase();
             }
 
 
 
-            var fileName = "decodedFile." + fileExtn;
+            var fileName = "decoded_file." + fileExtn;
 
             while (n--) {
                 u8arr[n] = bstr.charCodeAt(n);
