@@ -338,7 +338,7 @@
                             <div class="copy">
                                 <textarea id="base64" cols="68" rows="5" placeholder="Result Goes here..."
                                     readonly></textarea>
-                                <div class="file-upload-content" style="display: none;">
+                                <div class="file-upload-content" style="display: none;" id = "downloadFileSection">
 
                                     <div class="image-title-wrap" id="text-val">
                                         <div class="file-info"> <span
@@ -598,7 +598,7 @@
                 $('.formcode').addClass("formcode2");
                 $('html').removeClass("uploadfile");
                 $('html').removeClass("fileuploadsmain");
-
+                $('downloadFileSection').css("display", "none");
                 $('.formcode').toggleClass("formcode3");
                 // if ($(.#encoded).val() == "")
 
@@ -681,6 +681,7 @@
 
 
     <script>
+        var decodedStringValue = '';
         // encode
         $('#encoded').keyup(function () {
             processChange();
@@ -729,7 +730,8 @@
             var reader = new FileReader();
             reader.addEventListener("load", () => {
 
-                sessionStorage.setItem("Base64String", reader.result);
+                //sessionStorage.setItem("Base64String", reader.result);
+                decodedStringValue = reader.result;
             },
                 false
             );
@@ -738,7 +740,8 @@
 
         // download
         function downloadFile() {
-            var base64String = sessionStorage.getItem("Base64String");
+            //var base64String = sessionStorage.getItem("Base64String");
+            var base64String = decodedStringValue;
             var arr = "";
             var bstr;
             var n;
@@ -784,24 +787,26 @@
             let fileHeader = new Map();
 
             //get the first 3 char of base64
-            fileHeader.set("/9j", "image/JPG")
-            fileHeader.set("iVB", "image/PNG")
-            fileHeader.set("Qk0", "image/BMP")
-            fileHeader.set("SUk", "image/TIFF")
-            fileHeader.set("JVB", "application/PDF")
-            fileHeader.set("UEs", "application/OFD")
-
-            let res = ""
+            fileHeader.set("/9j", "image/JPG");
+            fileHeader.set("iVB", "image/PNG");
+            fileHeader.set("Qk0", "image/BMP");
+            fileHeader.set("SUk", "image/TIFF");
+            fileHeader.set("PD94", "image/SVG");
+            fileHeader.set("JVB", "application/PDF");
+            fileHeader.set("UEs", "application/ZIP");
+            fileHeader.set("VGV", "application/txt");
+            
+            let res = "";
 
             fileHeader.forEach((v, k) => {
                 if (k == fileBase64.substr(0, 3)) {
-                    res = v
+                    res = v;
                 }
             })
 
             //if file is not supported
             if (res == "") {
-                res = "application/data"
+                res = "application/data";
             }
 
             //return map value
