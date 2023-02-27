@@ -651,6 +651,10 @@
 
                     $("#form_mail, #uplod_file").css("display", "block");
                 }
+                var liveMode = document.getElementById('livemode').checked;
+                if (liveMode) {
+                    processChange();
+                }
             })
 
             $('#files').on('change', function (e) {
@@ -682,10 +686,6 @@
 
     <script>
         var decodedStringValue = '';
-        // encode
-        $('#encoded').keyup(function () {
-            processChange();
-        });
 
         $('#encoded').on('drop', function (e) {
             e.preventDefault();
@@ -712,10 +712,11 @@
             var selected = document.getElementById('files');
             var liveMode = document.getElementById('livemode').checked;
             newVal = window.atob(inputVal);
+            var liveMode = document.getElementById('livemode').checked;
             if (inputVal !== undefined && inputVal !== "") {
                 $('#base64').text(newVal);
             } else {
-                var liveMode = document.getElementById('livemode').checked;
+                
                 //decode file only if live mode is unselected
                 if (!liveMode) {
                     decodeFile();
