@@ -615,6 +615,8 @@
         $(document).ready(function () {
             $('#livemode').click(function () {
                 $('#encoded').val('');
+                $('#base64').val('');
+                
                 $('.formcode3').removeClass("valid");
             });
         });
@@ -661,8 +663,8 @@
             })
 
             $('#files').on('change', function (e) {
-                var fileSizeInBytes = this.files[0].val();
-                if (fileSizeInBytes > files[0]) {
+                var fileSizeInBytes = document.getElementById('files').files[0].size;
+                if (fileSizeInBytes > 0) {
                     $('#encodebtn').css({
                         opacity: 9
                     });
@@ -715,9 +717,11 @@
             var selected = document.getElementById('files');
             var liveMode = document.getElementById('livemode').checked;
             newVal = window.atob(inputVal);
-            var liveMode = document.getElementById('livemode').checked;
+        
+           
             if (inputVal !== undefined && inputVal !== "") {
                 $('#base64').text(newVal);
+                
             } else {
                 
                 //decode file only if live mode is unselected
