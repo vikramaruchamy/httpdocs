@@ -2437,3 +2437,21 @@ a.navbar-brand {
 .removeprogress {
     display: none !important;
 }
+
+.encodebutton{
+    display: flex;
+    margin-top: 20px;
+    border-radius: 70px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    padding: 15px 32px;
+    width: fit-content;
+    margin-left: auto;
+    background: linear-gradient(158.46deg, #4DABF7 18.34%, #228BE6 65.55%);
+    box-shadow: 0px 10px 30px rgba(2, 97, 176, 0.3);
+}

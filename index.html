@@ -35,7 +35,7 @@
     <meta property="og:description"
         content="Online tool to Decode data from Base64 format to a human readable format." />
     <meta property="og:locale" content="en_US" />
-     <!--cache control-->
+    <!--cache control-->
     <meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700" />
@@ -116,10 +116,10 @@
                 <div class="herodetail">
                     <div class="encode">
                         <span class="data">
-                            <img src="assets/images/fire.svg" alt="">
+                            <!--<img src="assets/images/fire.svg" alt="">-->
                             <p> A Website to Encode/Decode data</p>
                         </span>
-                        <h2 class="encodeheading">Decode from <span> {Base64} </span> format</h2>
+                        <h2 class="encodeheading">Decode from <span> Base64 </span> format</h2>
                         <p>Do you have to deal with Base64 format? Then this site is perfect for you! <br>
                             Use our super handy online tool to encode or decode your data.</p>
                     </div>
@@ -234,7 +234,8 @@
                                     </svg>
 
                                 </span>-->
-                                <input type="checkbox" hidden="hidden" id="livemode">
+                                <input type="checkbox" hidden="hidden" id="livemode"
+                                    onclick='handleLiveModeClick(this);'>
                                 <label class="switch" for="livemode"></label>
                             </div>
                         </div>
@@ -328,9 +329,9 @@
                                         <button type="button" class="upload-button"> Upload </button>
                                     </div>
                                 </form>
-
-                                <a href="#" onclick="processChange()" id="encodebtn"
-                                    class="encodebtn2 encodebtn">DECODE</a>
+                           
+                                <button type="button"  onclick="processChange()" id="encodebtn"
+                                    class="encodebtn2 encodebtn encodebutton">DECODE</a>
                                 <!-- <a href="#" onclick="processChange()" id="decodebtn2"
                                 class="encodebtn2 encodebtn">Decode</a> -->
                             </div>
@@ -341,7 +342,7 @@
                             <div class="copy">
                                 <textarea id="base64" cols="68" rows="5" placeholder="Result Goes here..."
                                     readonly></textarea>
-                                <div class="file-upload-content" style="display: none;" id = "downloadFileSection">
+                                <div class="file-upload-content" style="display: none;" id="downloadFileSection">
 
                                     <div class="image-title-wrap" id="text-val">
                                         <div class="file-info"> <span
@@ -447,8 +448,9 @@
                     </span>
                     <ol>
                         <li itemprop="step" itemscope itemtype="https://schema.org/HowToStep">
-                            <span itemprop="text">Paste your string in the Text “Base64” field. To decode a text available in a file, upload
-                            the file in the file selector option.
+                            <span itemprop="text">Paste your string in the Text “Base64” field. To decode a text
+                                available in a file, upload
+                                the file in the file selector option.
                         </li>
                         <li itemprop="step" itemscope itemtype="https://schema.org/HowToStep">
                             <span itemprop="text">Select the character set, if you know it. Otherwise, leave it
@@ -485,7 +487,7 @@
 
                 <h3>Safe & Secure</h3>
                 <ul>
-                    <li>All communications with the servers are SSL encrypted(https). The file are also decoded locally
+                    <li>All communications with the servers are SSL encrypted(https). The files are decoded locally
                         using the browsers Javascript functions.
                     </li>
                 </ul>
@@ -520,7 +522,7 @@
                 </ul>-->
                 <div class="coprights">
                     <p> © 2022-2023 <a href="mailto:base64decodepro@gmail.com">Base64 Decode </a></p>
-                   
+
                     <div class="terms">
                         <div class="policy">
                             <a href="https://www.base64decode.pro/blog/privacy-policy/"> Privacy Policy</a>
@@ -615,33 +617,38 @@
         $(document).ready(function () {
             $('#livemode').click(function () {
                 $('#encoded').val('');
-                $('#base64').val('');
-                
                 $('.formcode3').removeClass("valid");
             });
         });
+        function handleLiveModeClick(cb) {
 
+
+            $('#base64').text('');
+            $('#encoded').val('');
+            $('.file-upload-content').hide();
+
+        }
         $(document).ready(function () {
 
             $('#encoded').on("input", function (event) {
 
                 if ($('#encoded').val() == '') {
                     $(".formcode").removeClass('valid');
-                    $('#base64').text("");
+
                 } else {
                     $(".formcode").addClass('valid');
                 }
 
             });
 
-            $('#encoded').on('keyup', function () {
+            /*$('#encoded').on('keyup', function () {
 
                 if ($('#encoded').val() == '') {
                     $(".formcode").removeClass('valid');
                 } else {
                     $(".formcode").addClass('valid');
                 }
-            })
+            })*/
         });
 
         $(document).ready(function () {
@@ -716,19 +723,30 @@
             var inputVal = $('#encoded').val();
             var selected = document.getElementById('files');
             var liveMode = document.getElementById('livemode').checked;
-            newVal = window.atob(inputVal);
-        
-           
+
+            try {
+                newVal = window.atob(inputVal);
+            } catch (e) {
+                // something failed
+
+                // if you want to be specific and only catch the error which means
+                // the base 64 was invalid, then check for 'e.code === 5'.
+                // (because 'DOMException.INVALID_CHARACTER_ERR === 5')
+                if (!liveMode && e.code === 5) {
+                    alert("Error while decoding - String is not properly encoded. Please check.");
+                }
+            }
+
             if (inputVal !== undefined && inputVal !== "") {
                 $('#base64').text(newVal);
-                
             } else {
-                
+
                 //decode file only if live mode is unselected
                 if (!liveMode) {
                     decodeFile();
                 }
             }
+
         }
 
         // .txt
@@ -767,7 +785,7 @@
                 //Base64 string doesn't have the prefix metadata to that speicifies the mime type. Hence identify the filetype using prefix
                 arr[0] = '';
                 arr[1] = base64String;
-                
+
                 bstr = atob(base64String);
                 n = bstr.length;
                 u8arr = new Uint8Array(n);
@@ -804,8 +822,8 @@
             fileHeader.set("UEs", "application/ZIP");
             fileHeader.set("VGV", "application/txt");
             fileHeader.set("ZGF", "text/plain");
-            
-            
+
+
             let res = "";
 
             fileHeader.forEach((v, k) => {
@@ -833,17 +851,6 @@
             r.readAsDataURL(file);
         });
 
-        $('#copy').click(function () {
-            $('#base64').select();
-            try {
-                var success = document.execCommand('copy');
-                if (!success)
-                    throw 'shucks';
-            } catch (e) {
-                window.prompt('Your browser doesn\'t support auto-copying, please copy the preselected text below:', $(
-                    '#base642').text());
-            }
-        });
         $('#files').attr('title', '');
 
 
