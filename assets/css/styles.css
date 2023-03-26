@@ -502,7 +502,7 @@ section.herosection {
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    line-height: 30px;
+    line-height: 3!important;;
     color: #212529;
     margin-bottom: 30px;
 }
@@ -512,12 +512,22 @@ ul li {
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    line-height: 30px;
+    line-height: 3!important;
+    color: #000000;
+}
+
+ol li {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 3!important;
     color: #000000;
 }
 
 .base ul {
     padding-left: 22px;
+    line-height: 3;
 }
 
 /*********************  Home banner  *******************/
