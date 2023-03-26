@@ -797,6 +797,23 @@ span.data p {
     margin: 0 !important;
 }
 
+h1.encodeheading {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 45px;
+    line-height: 65px;
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: -3px;
+    color: #000000;
+    margin-bottom: 3px;
+}
+
+h1.encodeheading span {
+    color: #228BE6;
+}
+
 h2.encodeheading {
     font-family: 'Poppins';
     font-style: normal;
