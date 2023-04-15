@@ -329,10 +329,10 @@
                                         <button type="button" class="upload-button"> Upload </button>
                                     </div>
                                 </form>
-                           
-                                <button type="button"  onclick="processChange()" id="encodebtn"
+
+                                <button type="button" onclick="processChange()" id="encodebtn"
                                     class="encodebtn2 encodebtn encodebutton">DECODE</a>
-                                <!-- <a href="#" onclick="processChange()" id="decodebtn2"
+                                    <!-- <a href="#" onclick="processChange()" id="decodebtn2"
                                 class="encodebtn2 encodebtn">Decode</a> -->
                             </div>
 
@@ -475,12 +475,12 @@
                     <li>Character set: Our website uses the UTF-8 character set by default. Change this option if you
                         want to data in which is in another charset.
                     </li>
-                    
+
                     <li>Split lines: The encoded data will become a continuous text without any whitespaces,
                         Check this option if you want to break it up into multiple lines as the original data. The
                         applied character limit is 76 which is
                         defined in the MIME (RFC 2045) specification.</li>
-                        
+
                     <li>Live mode: Turn on this option to decode the data as you type. It currently supports only the
                         UTF-8 character set.</li>
                 </ul>
@@ -852,7 +852,25 @@
 
         $('#files').attr('title', '');
 
+        //code to change the logo when scrolled
+        // select the header and image elements
+        const header = document.querySelector('header');
+        const image = header.querySelector('img');
 
+        // create a new MutationObserver instance
+        const observer = new MutationObserver(mutations => {
+            // check if the class "fixed" was added to the header element
+            if (header.classList.contains('fixed')) {
+                // change the image source attribute
+                image.src = 'assets/images/logo-white.png';
+            } else {
+                image.src = 'assets/images/logo.png';
+            }
+        });
+
+        // start observing changes to the header element's attributes
+        observer.observe(header, { attributes: true });
+       // code ends to change the logo when scrolled
     </script>
 
     <script>
