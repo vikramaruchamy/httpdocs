@@ -575,6 +575,21 @@
     </footer>
 
     <!-- Optional JavaScript -->
+
+    <script
+    src="https://js.sentry-cdn.com/a746770ed2dc4db289c58a75a42a035a.min.js"
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    Sentry.onLoad(function() {
+      Sentry.init({
+        // No need to configure DSN here, it is already configured in the loader script
+        // You can add any additional configuration here
+        sampleRate: 0.5,
+      });
+    });
+  </script>
+  
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/jquery.fancybox.min.js"></script>
