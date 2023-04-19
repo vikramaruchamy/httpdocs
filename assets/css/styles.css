@@ -461,6 +461,7 @@ ul.navbar-nav a {
 nav.navbar.navbar-expand-lg {
     padding: 25px 0px;
     transition: all 0.5s;
+    background: #daecfc;
 }
 
 header.fixed .navbar {
@@ -487,7 +488,7 @@ section.herosection {
     justify-content: center;
     background: rgb(255, 255, 255);
     padding: 110px 0;
-    background: #EEF7FF;
+    background: #daecfc;
 }
 
 .base {
