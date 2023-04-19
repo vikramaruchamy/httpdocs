@@ -11,13 +11,13 @@
 
         gtag('config', 'G-NG6YD2N4R7');
     </script>
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
         (function (c, l, a, r, i, t, y) {
             c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
             t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
             y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "fmdc9vh3mv");
-    </script>
+    </script>-->
     <title>Base64 Decode Online - 100% Client Side (Fast & Secure)</title>
     <link type="image/x-icon" rel="shortcut icon" href="assets/images/logoicon.png" />
     <!-- Required meta tags -->
@@ -576,20 +576,39 @@
 
     <!-- Optional JavaScript -->
 
-    <script
-    src="https://js.sentry-cdn.com/a746770ed2dc4db289c58a75a42a035a.min.js"
-    crossorigin="anonymous"
-  ></script>
-  <script>
-    Sentry.onLoad(function() {
-      Sentry.init({
-        // No need to configure DSN here, it is already configured in the loader script
-        // You can add any additional configuration here
-        sampleRate: 0.5,
-      });
-    });
-  </script>
+    <script src="https://js.sentry-cdn.com/a746770ed2dc4db289c58a75a42a035a.min.js" crossorigin="anonymous"></script>
+    <script src="https://browser.sentry-cdn.com/7.48.0/captureconsole.min.js"
+        integrity="sha384-w7wbj+t0vjCrfTeel8Y80lH6MTZbRMeJaNOCLmc+cADkQwGF6Sc4pNEaiJzZc1ua"
+        crossorigin="anonymous"></script>
+    <script>
+        Sentry.onLoad(function () {
+            Sentry.init({
+                /*dsn: "https://a746770ed2dc4db289c58a75a42a035a@o4505034881826816.ingest.sentry.io/4505034884251648",*/
+                integrations: [new Sentry.Integrations.CaptureConsole(
+                    {
+                        // array of methods that should be captured
+                        // defaults to ['log', 'info', 'warn', 'error', 'debug', 'assert']
+                        levels: ['warn', 'error', 'debug', 'assert']
+                    }
+                )],
+            });
+        });
+       /* Sentry.onLoad(function () {
+              Sentry.init({
+                  // No need to configure DSN here, it is already configured in the loader script
+                  // You can add any additional configuration here
+                  sampleRate: 0.5,
   
+                  integrations: [new Sentry.Integrations.CaptureConsole(
+                      {
+                          // array of methods that should be captured
+                          // defaults to ['log', 'info', 'warn', 'error', 'debug', 'assert']
+                          levels: string['warn', 'error', 'debug', 'assert']
+                      }
+                  )],
+              });*/
+    </script>
+
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/jquery.fancybox.min.js"></script>
@@ -657,7 +676,7 @@
             });
 
             /*$('#encoded').on('keyup', function () {
-
+ 
                 if ($('#encoded').val() == '') {
                     $(".formcode").removeClass('valid');
                 } else {
@@ -713,7 +732,10 @@
 
     <script>
         var decodedStringValue = '';
-
+        var arr = "";
+        var bstr;
+        var n;
+        var fileExtn;
         $('#encoded').on('drop', function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -729,8 +751,8 @@
                 if (!success)
                     throw 'shucks';
             } catch (e) {
-                window.prompt('Your browser doesn\'t support auto-copying, please copy the preselected text below:', $(
-                    '#base64').text());
+                alert('Your browser doesn\'t support auto-copying, please copy the preselected text below:', $(
+                    '#base64'));
             }
         });
         function processChange() {
@@ -750,6 +772,9 @@
                 if (!liveMode && e.code === 5) {
                     alert("Error while decoding - String is not properly encoded. Please check.");
                 }
+                console.error("Text Decode Error : " + e + " For the input value : '" + inputVal + "'");
+                /*Sentry.captureException(e);
+                Sentry.captureMessage(inputVal);*/
             }
 
             if (inputVal !== undefined && inputVal !== "") {
@@ -766,50 +791,46 @@
 
         // .txt
         function decodeFile(e) {
-            var file = document.getElementById('files').files[0];
-
-            var reader = new FileReader();
-            reader.addEventListener("load", () => {
-
-                //sessionStorage.setItem("Base64String", reader.result);
-                decodedStringValue = reader.result;
-            },
-                false
-            );
-            reader.readAsText(file);
-        }
-
-        // download
-        function downloadFile() {
-            //var base64String = sessionStorage.getItem("Base64String");
             var base64String = decodedStringValue;
-            var arr = "";
-            var bstr;
-            var n;
-            var fileExtn;
+
 
             if (base64String.startsWith("data:")) {
+
                 //identify the File type from the Prefix as the string has the Meta data prefix. 
                 arr = base64String.split(',');
                 mime = arr[0].match(/:(.*?);/)[1];
-                bstr = atob(arr[1]);
-                n = bstr.length;
-                u8arr = new Uint8Array(n);
-                fileExtn = mime.split('/')[1];
+                bstr = decodeBase64String(arr[1]);
+                if (bstr) {
+
+                    n = bstr.length;
+                    u8arr = new Uint8Array(n);
+                    fileExtn = mime.split('/')[1];
+                } else {
+                    return;
+                }
             } else {
+
                 //Base64 string doesn't have the prefix metadata to that speicifies the mime type. Hence identify the filetype using prefix
                 arr[0] = '';
                 arr[1] = base64String;
 
-                bstr = atob(base64String);
-                n = bstr.length;
-                u8arr = new Uint8Array(n);
-                mime = base64FileHeaderMapper(base64String);
-                fileExtn = (mime.split('/')[1]).toLowerCase();
+                bstr = decodeBase64String(base64String);
+
+                if (bstr) {
+
+                    n = bstr.length;
+                    u8arr = new Uint8Array(n);
+                    mime = base64FileHeaderMapper(base64String);
+
+                    fileExtn = (mime.split('/')[1]).toLowerCase();
+                } else {
+                    return;
+                }
             }
+        }
 
-
-
+        // download
+        function downloadFile() {
             var fileName = "decoded_file." + fileExtn;
 
             while (n--) {
@@ -821,6 +842,19 @@
             link.href = window.URL.createObjectURL(blob);
             link.download = fileName;
             link.click();
+        }
+
+        function decodeBase64String(base64String) {
+            var bstr = null;
+            try {
+                bstr = atob(base64String);
+            } catch (e) {
+                alert('The string to be decoded is not correctly encoded. Please check your input file');
+                console.error("File Decode Error : " + e + " File contents: '" + base64String + "'");
+                /*Sentry.captureException(e);
+                Sentry.captureMessage(base64String);*/
+            }
+            return bstr;
         }
         //Function to idenitfy the File type information from the Prefix of the Base64 string. 
         function base64FileHeaderMapper(fileBase64) {
@@ -897,9 +931,13 @@
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
+                addListeners(reader);
+
                 reader.onload = function (e) {
+                    decodedStringValue = reader.result;
                     $('.image-upload-wrap').hide();
                     $('.file-upload-image').attr('src', e.target.result);
+
                     $(".encodebtn2").click(function () {
                         $('.file-upload-content').show();
                         $("textarea#base64,button#copy,.drag-file-area").css("display", "none");
@@ -908,16 +946,8 @@
                     })
                     $('.file-upload-content').show();
 
-                    var files = _("files").files[0];
-                    var formdata = new FormData();
-                    formdata.append("files", files);
-                    var ajax = new XMLHttpRequest();
-                    ajax.upload.addEventListener("progress", progressHandler, false);
-                    ajax.addEventListener("load", completeHandler, false);
-                    ajax.open("POST",
-                        "upload.php"
-                    );
-                    ajax.send(formdata);
+
+
                     $('html').addClass("fileuploadsmain");
                     $('.up-progress').toggleClass("up-progress2");
                     $('.encodebtn').addClass('encodebtnold');
@@ -925,31 +955,40 @@
                     $('.encodebtn3').addClass('encodebtnold');
                     $('.image-title').html(input.files[0].name);
                 };
-                reader.readAsDataURL(input.files[0]);
+                reader.readAsText(input.files[0]);
             } else {
                 removeUpload();
             }
         }
 
         function removeUpload() {
-            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-            $('.file-upload-content').hide();
-            $('.image-upload-wrap').show();
+            location.reload();
         }
 
 
-        function progressHandler(event) {
-            _("loaded_n_total").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
-            var percent = (event.loaded / event.total) * 100;
-            _("progressBar").value = Math.round(percent);
-            _("status").innerHTML = Math.round(percent) + "% uploaded... please wait";
+        function handleLoadEvent(event) {
+            // _("loaded_n_total").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
+            const upPrecentDisplayer = document.getElementById("up-percent");
+            upPrecentDisplayer.textContent = `${event.type}: ${event.loaded} bytes transferred`;
+            //alert(`${event.type}: ${event.loaded} bytes transferred`);
+            // _("status").innerHTML = Math.round(percent) + "% uploaded... please wait";
         }
 
-        function completeHandler(event) {
+        function handleErrorEvent(event) {
+            alert("Error while loading file, Please try again.");
+        }
+        /*function completeHandler(event) {
             _("status").innerHTML = event.target.responseText;
             _("progressBar").value = 0; //wil clear progress bar after successful upload
+        }*/
+        function addListeners(reader) {
+            reader.addEventListener("loadstart", handleLoadEvent);
+            //reader.addEventListener("load", handleEvent);
+            reader.addEventListener("loadend", handleLoadEvent);
+            reader.addEventListener("progress", handleLoadEvent);
+            reader.addEventListener("error", handleErrorEvent);
+            reader.addEventListener("abort", handleErrorEvent);
         }
-
 
         $('.image-upload-wrap').bind('dragover', function () {
             $('.image-upload-wrap').addClass('image-dropping');
