@@ -736,6 +736,8 @@
         var bstr;
         var n;
         var fileExtn;
+        var selectedFileName = "";
+
         $('#encoded').on('drop', function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -850,7 +852,7 @@
                 bstr = atob(base64String);
             } catch (e) {
                 alert('The string to be decoded is not correctly encoded. Please check your input file');
-                console.error("File Decode Error : " + e + " File contents: '" + base64String + "'");
+                console.error("File Decode Error for File Name: " + selectedFileName + " ..Error is : " + e + " File contents: '" + base64String + "'");
                 /*Sentry.captureException(e);
                 Sentry.captureMessage(base64String);*/
             }
@@ -934,7 +936,9 @@
                 addListeners(reader);
 
                 reader.onload = function (e) {
+                    selectedFileName = input.files[0].name;
                     decodedStringValue = reader.result;
+                    
                     $('.image-upload-wrap').hide();
                     $('.file-upload-image').attr('src', e.target.result);
 
