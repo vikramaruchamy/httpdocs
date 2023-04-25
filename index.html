@@ -805,7 +805,7 @@
                 if (bstr) {
 
                     n = bstr.length;
-                    u8arr = new Uint8Array(n);
+                   
                     fileExtn = mime.split('/')[1];
                 } else {
                     return;
@@ -821,7 +821,7 @@
                 if (bstr) {
 
                     n = bstr.length;
-                    u8arr = new Uint8Array(n);
+                   
                     mime = base64FileHeaderMapper(base64String);
 
                     fileExtn = (mime.split('/')[1]).toLowerCase();
@@ -833,6 +833,7 @@
 
         // download
         function downloadFile() {
+            u8arr = new Uint8Array(n);
             var fileName = "decoded_file." + fileExtn;
 
             while (n--) {
