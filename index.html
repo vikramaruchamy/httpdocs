@@ -594,19 +594,19 @@
             });
         });
        /* Sentry.onLoad(function () {
-              Sentry.init({
-                  // No need to configure DSN here, it is already configured in the loader script
-                  // You can add any additional configuration here
-                  sampleRate: 0.5,
-  
-                  integrations: [new Sentry.Integrations.CaptureConsole(
-                      {
-                          // array of methods that should be captured
-                          // defaults to ['log', 'info', 'warn', 'error', 'debug', 'assert']
-                          levels: string['warn', 'error', 'debug', 'assert']
-                      }
-                  )],
-              });*/
+                  Sentry.init({
+                      // No need to configure DSN here, it is already configured in the loader script
+                      // You can add any additional configuration here
+                      sampleRate: 0.5,
+      
+                      integrations: [new Sentry.Integrations.CaptureConsole(
+                          {
+                              // array of methods that should be captured
+                              // defaults to ['log', 'info', 'warn', 'error', 'debug', 'assert']
+                              levels: string['warn', 'error', 'debug', 'assert']
+                          }
+                      )],
+                  });*/
     </script>
 
     <script src="assets/js/jquery.min.js"></script>
@@ -771,12 +771,13 @@
                 // if you want to be specific and only catch the error which means
                 // the base 64 was invalid, then check for 'e.code === 5'.
                 // (because 'DOMException.INVALID_CHARACTER_ERR === 5')
-                if (!liveMode && e.code === 5) {
+                if (!checkIfFileString(inputVal) && !liveMode && e.code === 5) {
                     alert("Error while decoding - String is not properly encoded. Please check.");
+                    console.error("Text Decode Error : " + e + " For the input value : '" + inputVal + "'");
                 }
-                console.error("Text Decode Error : " + e + " For the input value : '" + inputVal + "'");
-                /*Sentry.captureException(e);
-                Sentry.captureMessage(inputVal);*/
+
+                //checkIfFileString(inputVal);
+
             }
 
             if (inputVal !== undefined && inputVal !== "") {
@@ -792,11 +793,11 @@
         }
 
         // .txt
-        function decodeFile(e) {
+        function decodeFile() {
             var base64String = decodedStringValue;
 
 
-            if (base64String.startsWith("data:")) {
+            if (base64String.toLowerCase().startsWith("data:")) {
 
                 //identify the File type from the Prefix as the string has the Meta data prefix. 
                 arr = base64String.split(',');
@@ -805,7 +806,7 @@
                 if (bstr) {
 
                     n = bstr.length;
-                   
+
                     fileExtn = mime.split('/')[1];
                 } else {
                     return;
@@ -821,7 +822,7 @@
                 if (bstr) {
 
                     n = bstr.length;
-                   
+
                     mime = base64FileHeaderMapper(base64String);
 
                     fileExtn = (mime.split('/')[1]).toLowerCase();
@@ -829,6 +830,7 @@
                     return;
                 }
             }
+
         }
 
         // download
@@ -926,6 +928,59 @@
        // code ends to change the logo when scrolled
     </script>
 
+
+    <script>
+        function checkIfFileString(inputVal) {
+            if (inputVal.startsWith("data:")) {
+                return promptTextToFileDecode(inputVal);
+            } else if (inputVal.startsWith("/9j") || inputVal.startsWith("iVB") || inputVal.startsWith("Qk0") || inputVal.startsWith("SUk") || inputVal.startsWith("PD94") || inputVal.startsWith("JVB")
+                || inputVal.startsWith("UEs") || inputVal.startsWith("VGV") || inputVal.startsWith("ZGF")) {
+                    alert("true");
+                return promptTextToFileDecode(inputVal);
+            } else {
+                return false;
+            }
+        }
+        function promptTextToFileDecode(inputVal) {
+            if (confirm("It looks like the input string is a Base64 Decode File. Would you like to decode it as a file?")) {
+                readTextAsFile(inputVal);
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+
+        function readTextAsFile(inputVal) {
+
+
+            selectedFileName = "DecodedFile";
+            decodedStringValue = inputVal;
+
+            $('.image-upload-wrap').hide();
+
+
+            $('.file-upload-content').show();
+            $("textarea#base64,button#copy,.drag-file-area").css("display", "none");
+            $(".letsgo").css("display", "flex");
+            $(".up-progress").addClass("removeprogress")
+
+            $('.file-upload-content').show();
+
+
+
+            $('html').addClass("fileuploadsmain");
+            $('.up-progress').toggleClass("up-progress2");
+            $('.encodebtn').addClass('encodebtnold');
+            $('.encodebtn2').addClass('encodebtn3');
+            $('.encodebtn3').addClass('encodebtnold');
+            $('.image-title').html("Decoded File");
+            decodeFile();
+
+        }
+
+
+    </script>
     <script>
         function _(el) {
             return document.getElementById(el);
@@ -939,7 +994,7 @@
                 reader.onload = function (e) {
                     selectedFileName = input.files[0].name;
                     decodedStringValue = reader.result;
-                    
+
                     $('.image-upload-wrap').hide();
                     $('.file-upload-image').attr('src', e.target.result);
 
