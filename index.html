@@ -588,25 +588,12 @@
                     {
                         // array of methods that should be captured
                         // defaults to ['log', 'info', 'warn', 'error', 'debug', 'assert']
-                        levels: ['warn', 'error', 'debug', 'assert']
+                        levels: ['log', 'info', 'warn', 'error', 'debug', 'assert']
                     }
                 )],
             });
         });
-       /* Sentry.onLoad(function () {
-                  Sentry.init({
-                      // No need to configure DSN here, it is already configured in the loader script
-                      // You can add any additional configuration here
-                      sampleRate: 0.5,
-      
-                      integrations: [new Sentry.Integrations.CaptureConsole(
-                          {
-                              // array of methods that should be captured
-                              // defaults to ['log', 'info', 'warn', 'error', 'debug', 'assert']
-                              levels: string['warn', 'error', 'debug', 'assert']
-                          }
-                      )],
-                  });*/
+       
     </script>
 
     <script src="assets/js/jquery.min.js"></script>
@@ -764,14 +751,20 @@
             var liveMode = document.getElementById('livemode').checked;
 
             try {
-                newVal = window.atob(inputVal);
+                if (checkIfFileString(inputVal)) {
+                    console.log("Text converted to File succesfully");
+                }
+                else {
+                    newVal = window.atob(inputVal);
+                }
+
             } catch (e) {
                 // something failed
 
                 // if you want to be specific and only catch the error which means
                 // the base 64 was invalid, then check for 'e.code === 5'.
                 // (because 'DOMException.INVALID_CHARACTER_ERR === 5')
-                if (!checkIfFileString(inputVal) && !liveMode && e.code === 5) {
+                if (!liveMode && e.code === 5) {
                     alert("Error while decoding - String is not properly encoded. Please check.");
                     console.error("Text Decode Error : " + e + " For the input value : '" + inputVal + "'");
                 }
@@ -935,14 +928,14 @@
                 return promptTextToFileDecode(inputVal);
             } else if (inputVal.startsWith("/9j") || inputVal.startsWith("iVB") || inputVal.startsWith("Qk0") || inputVal.startsWith("SUk") || inputVal.startsWith("PD94") || inputVal.startsWith("JVB")
                 || inputVal.startsWith("UEs") || inputVal.startsWith("VGV") || inputVal.startsWith("ZGF")) {
-                    alert("true");
+
                 return promptTextToFileDecode(inputVal);
             } else {
                 return false;
             }
         }
         function promptTextToFileDecode(inputVal) {
-            if (confirm("It looks like the input string is a Base64 Decode File. Would you like to decode it as a file?")) {
+            if (confirm("It looks like the input string is a Base64 Decoded File. Would you like to decode it as a file instead of a String?")) {
                 readTextAsFile(inputVal);
                 return true;
             } else {
