@@ -403,9 +403,14 @@
                         </span>
                     </div>
                     <div class="letsgo">
-                       <!-- <p>Do you want decode more?</p>-->
-                        <a href="#" onClick="location.reload();" id="DecodeMoreButton">Click Here to Decode More</a>
+                        
+                      
+                        <button id="DecodeMoreButton" onclick="location.reload();">Click Here Decode More</button>
                     </div>
+                   <!-- <div class="letsgo">
+                         <p>Do you want decode more?</p>-->
+                       <!--  <a href="#" onClick="location.reload();" id="DecodeMoreButton">Click Here to Decode More</a>
+                    </div>-->
                     <span class="encodes"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_26_198)">
@@ -593,7 +598,7 @@
                 )],
             });
         });
-       
+
     </script>
 
     <script src="assets/js/jquery.min.js"></script>
@@ -842,7 +847,7 @@
             link.click();
             $('#dwn-btn').removeClass('animatebutton');
             $('#DecodeMoreButton').addClass('animatebutton');
-            
+
         }
 
         function decodeBase64String(base64String) {
@@ -927,18 +932,24 @@
 
     <script>
         function checkIfFileString(inputVal) {
+
             if (inputVal.startsWith("data:")) {
-                return promptTextToFileDecode(inputVal);
+                var temparr = inputVal.split(',');
+                var tempmime = temparr[0].match(/:(.*?);/)[1];
+
+                return promptTextToFileDecode(inputVal, tempmime);
             } else if (inputVal.startsWith("/9j") || inputVal.startsWith("iVB") || inputVal.startsWith("Qk0") || inputVal.startsWith("SUk") || inputVal.startsWith("PD94") || inputVal.startsWith("JVB")
                 || inputVal.startsWith("UEs") || inputVal.startsWith("VGV") || inputVal.startsWith("ZGF")) {
+                var tempMime = base64FileHeaderMapper(inputVal);
 
-                return promptTextToFileDecode(inputVal);
+                return promptTextToFileDecode(inputVal, tempMime);
             } else {
                 return false;
             }
         }
-        function promptTextToFileDecode(inputVal) {
-            if (confirm("It looks like the input string is a Base64 Decoded File. Would you like to decode it as a file instead of a String?")) {
+        function promptTextToFileDecode(inputVal, mime) {
+            var mimeArray = mime.split('/');
+            if (confirm("It looks like the input string is a " + mimeArray[1].toUpperCase() + " " + mimeArray[0].toUpperCase() + " decoded as Base64 string. Would you like to decode it as a " + mimeArray[1] + " " + mimeArray[0] + " file instead of a String?")) {
                 readTextAsFile(inputVal);
                 return true;
             } else {
@@ -971,6 +982,8 @@
             $('.encodebtn2').addClass('encodebtn3');
             $('.encodebtn3').addClass('encodebtnold');
             $('.image-title').html("Decoded File");
+            $('#dwn-btn').addClass('animatebutton');
+
             decodeFile();
 
         }
