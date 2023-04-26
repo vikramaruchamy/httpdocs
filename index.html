@@ -403,8 +403,8 @@
                         </span>
                     </div>
                     <div class="letsgo">
-                        <p>Do you want decode more?</p>
-                        <a href="#" onClick="location.reload();">Let’s GO</a>
+                       <!-- <p>Do you want decode more?</p>-->
+                        <a href="#" onClick="location.reload();" id="DecodeMoreButton">Click Here to Decode More</a>
                     </div>
                     <span class="encodes"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -840,6 +840,9 @@
             link.href = window.URL.createObjectURL(blob);
             link.download = fileName;
             link.click();
+            $('#dwn-btn').removeClass('animatebutton');
+            $('#DecodeMoreButton').addClass('animatebutton');
+            
         }
 
         function decodeBase64String(base64String) {
@@ -1006,6 +1009,9 @@
                     $('.encodebtn').addClass('encodebtnold');
                     $('.encodebtn2').addClass('encodebtn3');
                     $('.encodebtn3').addClass('encodebtnold');
+
+                    $('#dwn-btn').addClass('animatebutton');
+
                     $('.image-title').html(input.files[0].name);
                 };
                 reader.readAsText(input.files[0]);

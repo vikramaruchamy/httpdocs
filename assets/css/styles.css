@@ -1809,12 +1809,11 @@ html.uploadfile .download {
 }
 
 .download button {
-    background: linear-gradient(128.59deg, #FD7E14 16.05%, #CC5D00 63.56%);
-    box-shadow: 0px 10px 30px rgba(253, 126, 20, 0.3);
-    border-radius: 70px;
+
     width: 149px;
     height: 51px;
     border: none;
+    border-radius: 70px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
@@ -1826,7 +1825,31 @@ html.uploadfile .download {
 
     /* White */
     color: #FFFFFF;
+    
 }
+
+.animatebutton {
+    animation: tilt-shaking 0.5s linear infinite;
+    background: linear-gradient(128.59deg, #FD7E14 16.05%, #CC5D00 63.56%);
+    box-shadow: 0px 10px 30px rgba(253, 126, 20, 0.3);
+    border-radius: 70px;
+  }
+
+.animatebutton:hover{
+    -webkit-animation-play-state:paused;
+    -moz-animation-play-state:paused;
+    -o-animation-play-state:paused;
+    animation-play-state:paused;
+    cursor: pointer;
+  }
+
+@keyframes tilt-shaking {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    50% { transform: rotate(0eg); }
+    75% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+  }
 
 .download {
     text-align: center;
@@ -1939,25 +1962,22 @@ button#copy {
 }
 
 .letsgo a {
-    border: 2px solid #228BE6;
-    filter: drop-shadow(0px 10px 30px rgba(67, 154, 0, 0.3));
-    border-radius: 70px;
-    width: 125px;
-    height: 51px;
     align-items: center;
     display: flex;
     justify-content: center;
+    /*width: 149px;*/
+    height: 51px;
+    border: none;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
     line-height: 21px;
     /* identical to box height */
-    text-align: center;
-    text-transform: uppercase;
-
-    /* Blue/6 */
-    color: #228BE6;
+    text-align: center!important;
+    margin-left: 30px;
+    /* White */
+    color: #FFFFFF;
 }
 
 .letsgo {
@@ -2483,3 +2503,4 @@ a.navbar-brand {
     background: linear-gradient(158.46deg, #4DABF7 18.34%, #228BE6 65.55%);
     box-shadow: 0px 10px 30px rgba(2, 97, 176, 0.3);
 }
+
