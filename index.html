@@ -774,7 +774,7 @@
         });
         function processChange() {
             var newVal = '';
-            var inputVal = $('#encoded').val();
+            var inputVal = $('#encoded').val().replace(/^'/, "").replace(/^"/, "").replace(/\'$/, '').replace(/\"$/, '');
             var selected = document.getElementById('files');
             var liveMode = document.getElementById('livemode').checked;
 
