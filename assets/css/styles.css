@@ -626,6 +626,22 @@ footer {
     color: #FFFFFF;
     mix-blend-mode: normal;
 }
+.coprights a {
+    margin: 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 26px;
+    /* identical to box height, or 186% */
+    text-align: center;
+    color: #a1a1a1;
+    mix-blend-mode: normal;
+}
+
+.coprights a:hover {
+    color: white;
+  }
 
 .footerlogo img {
     margin-bottom: 21px;
