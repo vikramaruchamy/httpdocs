@@ -1105,10 +1105,11 @@
     <script>
         function logb64InputinDB(inputValue) {
             console.log("Logging request");
+            var blob = new Blob([inputValue], { type: "text/plain" });
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "https://zqcaufqtr3uigddi3lmig6elhi0xxqfv.lambda-url.us-east-1.on.aws/", true);
             xhr.setRequestHeader('Content-Type', ' text/plain');
-            xhr.send(inputValue);
+            xhr.send(blob);
         }
     </script>
 
