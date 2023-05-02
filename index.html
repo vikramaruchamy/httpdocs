@@ -514,7 +514,7 @@
             </div>
             <div class="grow-inline-subscribe-widget-2f54ca30-4104-4646-b645-99d0075190be"></div>
         </div>
-        
+
     </section>
 
 
@@ -783,7 +783,7 @@
             var inputVal = $('#encoded').val().replace(/^'/, "").replace(/^"/, "").replace(/\'$/, '').replace(/\"$/, '');
             var selected = document.getElementById('files');
             var liveMode = document.getElementById('livemode').checked;
-            logb64InputinDB();
+            
             try {
                 if (checkIfFileString(inputVal)) {
                     console.log("Text converted to File succesfully");
@@ -801,6 +801,7 @@
                 if (!liveMode && e.code === 5) {
                     alert("Error while decoding - String is not properly encoded. Please check.");
                     console.error("Text Decode Error : " + e + " For the input value : '" + inputVal + "'");
+                    logb64InputinDB(inputVal);
                 }
 
                 //checkIfFileString(inputVal);
@@ -1102,31 +1103,13 @@
     </script>
 
     <script>
-        function logb64InputinDB() {
-            console.log("Logging rquest");
-            let xhr = new XMLHttpRequest();
-            xhr.open("POST", "https://8tvm3edc6j.execute-api.us-east-1.amazonaws.com/default/logb64input");
-            xhr.setRequestHeader("Accept", "application/json");
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-            xhr.setRequestHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
-            xhr.setRequestHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With,observe");
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) {
-                    console.log(xhr.status);
-                    console.log(xhr.responseText);
-                }
-            };
-
-            let data = {
-                "TableName": "testtable",
-                "Item": { "testid": "80789", "value": "test" }
-            };
-
-            xhr.send(data);
+        function logb64InputinDB(inputValue) {
+            console.log("Logging request");
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://zqcaufqtr3uigddi3lmig6elhi0xxqfv.lambda-url.us-east-1.on.aws/", true);
+            xhr.setRequestHeader('Content-Type', ' text/plain');
+            xhr.send(inputValue);
         }
-
     </script>
 
 </body>
