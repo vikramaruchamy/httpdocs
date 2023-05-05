@@ -605,7 +605,7 @@ footer {
     text-align: center;
 }
 
-.coprights {
+.copyrights {
     padding: 20px 0px 0;
     margin-top: 50px;
     display: flex;
@@ -614,7 +614,7 @@ footer {
     border-top: 1px solid #085885;
 }
 
-.coprights p {
+.copyrights p {
     margin: 0;
     font-family: 'Poppins';
     font-style: normal;
@@ -626,7 +626,7 @@ footer {
     color: #FFFFFF;
     mix-blend-mode: normal;
 }
-.coprights a {
+.copyrights a {
     margin: 0;
     font-family: 'Poppins';
     font-style: normal;
@@ -639,7 +639,7 @@ footer {
     mix-blend-mode: normal;
 }
 
-.coprights a:hover {
+.copyrights a:hover {
     color: white;
   }
 
@@ -1127,7 +1127,7 @@ ul.privacydetail li a {
     margin-right: 20px;
 }
 
-.coprights p a {
+.copyrights p a {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
@@ -1459,7 +1459,7 @@ ul.privacydetail li a:hover {
     color: #228BE6;
 }
 
-.coprights p a:hover {
+.copyrights p a:hover {
     color: #0b86e1;
 }
 
