@@ -7,6 +7,10 @@ This repository is used to store and sync the development and deployment of the 
     <img width="33%" src="https://i.stack.imgur.com/RJj4x.png">
 </p>
 <div align="center">
+     <img width="33%" src="https://i.stack.imgur.com/RJj4x.png">
+    <img width="33%" src="https://i.stack.imgur.com/RJj4x.png">
+</div>
+<div align="center">
     <img src="https://i.stack.imgur.com/RJj4x.png">
    
 </div>
