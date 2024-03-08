@@ -1,7 +1,4 @@
-# Base64Decode PRO
-This repository is used to store and sync the development and deployment of the Base64decode files. 
-
-
+# Centering an image in GitHub Readme Demo
 
 
 <div align="center">
